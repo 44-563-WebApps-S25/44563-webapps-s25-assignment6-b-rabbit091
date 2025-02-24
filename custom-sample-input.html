@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Guessing Game By Anil Panday</title>
+</head>
+<body>
+
+<h2>City Guessing Game By Anil Panday</h2>
+
+<form>
+    <!-- Secret string input -->
+    <label for="secret_city">Where in the world:</label>
+    <input type="password" id="secret_city" name="secret_city" value="San Diego" disabled><br><br>
+
+    <!-- Guess input -->
+    <label for="guess_city">Guess the city:</label>
+    <input type="text" id="guess_city" name="guess_city"><br><br>
+
+    <!-- Check button -->
+    <input type="button" value="Check the guess" onclick="checkCity()">
+</form>
+
+<p id="result">Oops: 0, Found: 0</p>
+
+<script>
+    // Global variables for counts
+    let oops = 0;
+    let found = 0;
+
+    function checkCity() {
+        // Get the secret city and guess city values
+        const secretCity = document.getElementById("secret_city").value;
+        const guessCity = document.getElementById("guess_city").value;
+
+        // Compare the values and update the counts
+        if (secretCity === guessCity) {
+            found++;
+            alert("GotCha!");
+        } else {
+            oops++;
+            alert("Awe");
+        }
+
+        // Update the result display
+        document.getElementById("result").innerHTML = `Oops: ${oops}, Found: ${found}`;
+    }
+</script>
+
+</body>
+</html>
