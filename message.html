@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anil Panday - Message Cost</title>
+    <style>
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+        input {
+            margin: 10px;
+            padding: 5px;
+            width: 200px;
+        }
+        button {
+            padding: 10px;
+            background-color: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Anil Panday - Message Cost</h2>
+
+        <label>Enter cost per letter:</label>
+        <input type="number" id="basicprice" value="0.50"><br>
+
+        <label>Enter the length needed for discount:</label>
+        <input type="number" id="breakAt" value="9"><br>
+
+        <label>Enter the discount percent:</label>
+        <input type="number" id="discount" value="10"><br>
+
+        <button onclick="amounts()">Show total</button>
+
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function amounts() {
+            let basicPrice = parseFloat(document.getElementById("basicprice").value);
+            let breakAt = parseInt(document.getElementById("breakAt").value);
+            let discount = parseFloat(document.getElementById("discount").value);
+            let myResults = "";
+
+            for (let size = breakAt - 3; size <= breakAt + 3; size++) {
+                let cost;
+                if (size < breakAt) {
+                    cost = size * basicPrice;
+                } else {
+                    cost = size * basicPrice * ((100 - discount) / 100);
+                }
+                myResults += `size ${size} costs ${cost.toFixed(2)}; `;
+            }
+
+            document.getElementById("result").innerHTML = "Totals are: " + myResults;
+        }
+    </script>
+</body>
+</html>
