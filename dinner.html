@@ -9,6 +9,7 @@
 
     <h2>Anil Plans Dinner</h2>
 
+    <!-- First Form for Dinner Choices -->
     <form>
         <label><input type="checkbox" id="serve_wine"> Serve wine</label><br>
         <label><input type="checkbox" id="eat_outside"> Eat outside</label><br>
@@ -17,8 +18,19 @@
         <input type="button" onclick="choices()" value="Dinner Choices">
     </form>
 
+    <!-- Second Form for Main Dish and Dessert -->
+    <form>
+        <label for="main_dish">Enter main dish:</label>
+        <input type="text" id="main_dish" value="Butter Chicken"><br><br>
+
+        <label for="dessert">Enter dessert:</label>
+        <input type="text" id="dessert"><br><br>
+
+        <button type="button" onclick="updateDinner()">Update the dinner</button>
+    </form>
+
     <h3>Dinner Plan:</h3>
-    <div id="result"></div>
+    <pre id="result"></pre> <!-- Using <pre> for better JSON formatting -->
 
     <script>
         // Global object to store dinner choices
@@ -26,15 +38,27 @@
 
         function choices() {
             // Reset my_dinner object
-            my_dinner = {};
-
-            // Assign values based on checkbox status
-            my_dinner.wine = document.getElementById("serve_wine").checked;
-            my_dinner.outside = document.getElementById("eat_outside").checked;
-            my_dinner.candel = document.getElementById("light_candles").checked;
+            my_dinner = {
+                wine: document.getElementById("serve_wine").checked,
+                outside: document.getElementById("eat_outside").checked,
+                candle: document.getElementById("light_candles").checked
+            };
 
             // Display the dinner choices
-            document.getElementById("result").innerHTML = JSON.stringify(my_dinner);
+            document.getElementById("result").textContent = JSON.stringify(my_dinner, null, 2);
+        }
+
+        function updateDinner() {
+            // Get values from text inputs
+            const mainDish = document.getElementById("main_dish").value;
+            const dessert = document.getElementById("dessert").value;
+
+            // Update the my_dinner object
+            my_dinner["main"] = mainDish;
+            my_dinner["dessert"] = dessert;
+
+            // Display updated dinner plan
+            document.getElementById("result").textContent = JSON.stringify(my_dinner, null, 2);
         }
     </script>
 
