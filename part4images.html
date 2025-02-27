@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Switcher</title>
+    <style>
+        .image-container {
+            text-align: center;
+            margin-top: 50px;
+        }
+        img {
+            width: 150px;
+            height: 150px;
+            cursor: pointer;
+        }
+        #guess {
+            font-size: 20px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="image-container">
+        <img id="petImage" src="husky.webp" alt="Pet Image" onclick="updatePic()">
+        <p id="guess">Current Image: 1</p>
+    </div>
+
+    <script>
+        // 4. Global variable
+        let usePic = 1;
+        // 5. Function to update image
+        function updatePic() {
+            let imgElement = document.getElementById("petImage");
+            let guessElement = document.getElementById("guess");
+            // 5a. Switch case to handle image changes
+            switch (usePic) {
+                case 1:
+                    imgElement.src = "beagle.jpg";
+                    usePic = 2;
+                    break;
+                case 2:
+                    imgElement.src = "angelfish.jpg";
+                    usePic = 3;
+                    break;
+                case 3:
+                    imgElement.src = "husky.webp"; // Wrap back to the first image
+                    usePic = 1;
+                    break;
+            }
+            // Update the displayed guess value
+            guessElement.innerText = "Current Image: " + usePic;
+        }
+    </script>
+
+</body>
+</html>
