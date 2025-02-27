@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anil Plans Dinner</title>
+</head>
+<body>
+
+    <h2>Anil Plans Dinner</h2>
+
+    <form>
+        <label><input type="checkbox" id="serve_wine"> Serve wine</label><br>
+        <label><input type="checkbox" id="eat_outside"> Eat outside</label><br>
+        <label><input type="checkbox" id="light_candles"> Light candles</label><br>
+        <br>
+        <input type="button" onclick="choices()" value="Dinner Choices">
+    </form>
+
+    <h3>Dinner Plan:</h3>
+    <div id="result"></div>
+
+    <script>
+        // Global object to store dinner choices
+        let my_dinner = {};
+
+        function choices() {
+            // Reset my_dinner object
+            my_dinner = {};
+
+            // Assign values based on checkbox status
+            my_dinner.wine = document.getElementById("serve_wine").checked;
+            my_dinner.outside = document.getElementById("eat_outside").checked;
+            my_dinner.candel = document.getElementById("light_candles").checked;
+
+            // Display the dinner choices
+            document.getElementById("result").innerHTML = JSON.stringify(my_dinner);
+        }
+    </script>
+
+</body>
+</html>
