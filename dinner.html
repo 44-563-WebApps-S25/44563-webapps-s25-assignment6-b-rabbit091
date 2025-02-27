@@ -35,7 +35,6 @@
     <script>
         // Global object to store dinner choices
         let my_dinner = {};
-
         function choices() {
             // Reset my_dinner object
             my_dinner = {
@@ -43,20 +42,16 @@
                 outside: document.getElementById("eat_outside").checked,
                 candle: document.getElementById("light_candles").checked
             };
-
             // Display the dinner choices
             document.getElementById("result").textContent = JSON.stringify(my_dinner, null, 2);
         }
-
         function updateDinner() {
             // Get values from text inputs
             const mainDish = document.getElementById("main_dish").value;
             const dessert = document.getElementById("dessert").value;
-
             // Update the my_dinner object
             my_dinner["main"] = mainDish;
             my_dinner["dessert"] = dessert;
-
             // Display updated dinner plan
             document.getElementById("result").textContent = JSON.stringify(my_dinner, null, 2);
         }
