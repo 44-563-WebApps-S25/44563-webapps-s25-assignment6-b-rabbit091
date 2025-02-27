@@ -26,6 +26,23 @@
         <img id="petImage" src="husky.webp" alt="Pet Image" onclick="updatePic()">
         <p id="guess">Current Image: 1</p>
     </div>
+    <br>
+    <br>
+    <p><b>PART 6 </b></p>
+
+    <h2>Choose an Operation</h2>
+
+    <label>Enter cost per letter: <input type="number" id="basicprice" value="0.50"></label><br>
+    <label>Enter the length needed for the discount: <input type="number" id="breakAt" value="9"></label><br><br>
+
+    <form>
+        <label><input type="radio" name="operation" value="times" onclick="chooseOp()"> Product</label><br>
+        <label><input type="radio" name="operation" value="add" onclick="chooseOp()"> Sum</label><br>
+        <label><input type="radio" name="operation" value="mod" onclick="chooseOp()"> Mod</label><br>
+    </form>
+
+    <h3>Result:</h3>
+    <div id="result"></div>
 
     <script>
         // 4. Global variable
@@ -51,6 +68,38 @@
             }
             // Update the displayed guess value
             guessElement.innerText = "Current Image: " + usePic;
+        }
+
+        function chooseOp() {
+            let price = parseFloat(document.getElementById("basicprice").value);
+            let breakAt = parseInt(document.getElementById("breakAt").value);
+            let resultDiv = document.getElementById("result");
+            let operation = document.querySelector('input[name="operation"]:checked');
+
+            if (!operation) {
+                resultDiv.innerHTML = "Please select an operation.";
+                return;
+            }
+
+            let operationType = operation.value;
+            let result;
+
+            switch (operationType) {
+                case "times":
+                    result = price * breakAt;
+                    resultDiv.innerHTML = `${price} * ${breakAt} = ${result}`;
+                    break;
+                case "add":
+                    result = price + breakAt;
+                    resultDiv.innerHTML = `${price} + ${breakAt} = ${result}`;
+                    break;
+                case "mod":
+                    result = breakAt % price;
+                    resultDiv.innerHTML = `${breakAt} % ${price} = ${result}`;
+                    break;
+                default:
+                    resultDiv.innerHTML = "Invalid selection.";
+            }
         }
     </script>
 
